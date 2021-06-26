@@ -1,0 +1,30 @@
+
+$cinzel: 'Cinzel Decorative', cursive;
+
+.font-google1 {
+    font-size: 3em;
+    font-family: $cinzel;
+}
+
+.saludo{
+    font-size: 3em;
+    
+}
+.hPersonaje{
+   font-family: Kaiserzeit Gotisch;
+   font-size: 8em;
+ color: white;
+ -webkit-text-stroke: 0.02px black;
+}
+
+.hPersonajeS{
+    font-family: Kaiserzeit Gotisch;
+    font-size: 8em;
+  color: white;
+  margin-top: 0;
+  -webkit-text-stroke: 0.02px rgb(134, 7, 7);
+ }
+@font-face {
+    font-family: Kaiserzeit Gotisch;
+    src: url(../../font/KAISG___.TTF);
+}

@@ -1,0 +1,21 @@
+
+body{
+    margin: 0px;
+    padding: 0px;
+    margin-top: 0px;
+    background-image: url(https://fondosmil.com/fondo/54632.jpg);
+    background-size: cover;
+}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
+
+
+
+
+
+//components
+@import "../src/SASS/layout/header";
+@import "../src/SASS/words/words";
+@import "../src//SASS/layout/footer";
+@import "../src/SASS/layout/buttoms";
+@import "../src/SASS/layout/body";
+@import "../src/SASS/layout/pics"
