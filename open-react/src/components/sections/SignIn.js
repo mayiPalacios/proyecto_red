@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import { Formik, Field, Form } from "formik";
+import {FormikTextField} from "formik-material-fields";
 const API = 'http://localhost:3000'
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,9 +50,11 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
 
   const findform = (frm) => {
-      axios.get(`${API}/SIGNIN`, frm.values)
+      axios.post(`${API}/SIGNIN`, frm)
         .then(response =>{
+          console.log(response.request)
           if (response.data.done){
+            window.location.href = "/SALUDOS";
             console.log("A mayo le gusta mi pene")
           }else{
             console.log("Fail")
@@ -74,19 +77,20 @@ export default function SignIn() {
             Sign In
           </Typography>
           <Formik
-           initialValues={{user:"", email: "", password: "" }}
+           initialValues={{email: "", password: "" }}
          
            onSubmit={async values => {
              await new Promise(resolve => setTimeout(resolve, 500));
              alert(JSON.stringify(values, null, 2));
              console.log(JSON.stringify(values, null, 2))
-             findform({values})
+             console.log(values);
+             findform(values)
            }}
           
           
           >
           <Form className={classes.form} noValidate>
-            <TextField
+            <FormikTextField
               variant="outlined"
               margin="normal"
               required
@@ -97,7 +101,7 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
             />
-            <TextField
+            <FormikTextField
               variant="outlined"
               margin="normal"
               required

@@ -6,5 +6,5 @@ router = express.Router()
 router
   
   .post('/SIGNUP',StreamController.SignUp)
-  .get('/SIGNIN',StreamController.SignIn)
+  .post('/SIGNIN',StreamController.SignIn)
   module.exports = router
