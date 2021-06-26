@@ -7,7 +7,7 @@ var conn = require('./shing.controller'),
      
     ShingModel.save = (data) => {
          console.log(data);
-        return conn.query('INSERT INTO shing (user,email,password)  VALUES(?,?,?)',[data.user,data.email,data.password]);
+        return conn.query('INSERT INTO shing (email,password)  VALUES(?,?)',[data.email,data.password]);
 
     }
 

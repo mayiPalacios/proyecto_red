@@ -4,9 +4,9 @@ ShingController = () => {}
 ShingController.SignUp = async (req,res,next) => {
     const userview = false
     if(!userview){
-        const {user,email,password} = req.body;
+        const {email,password} = req.body;
         const userToAdd = {
-            user, email, password
+            email, password
         }
         console.log(userToAdd)
         ShingModel.save(userToAdd, (error) =>{

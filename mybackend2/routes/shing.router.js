@@ -6,5 +6,5 @@ router = express.Router()
 router
   
   .post('/SIGNUP',ShingController.SignUp)
-  .get('/SIGNIN',ShingController.SignIn)
+  .post('/SIGNIN',ShingController.SignIn)
   module.exports = router

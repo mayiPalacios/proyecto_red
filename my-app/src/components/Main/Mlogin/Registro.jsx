@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   
     const submitform = (frm) => {
       axios.post(`${API}/SIGNUP`, frm.values)
-          .then(response => console.log("Set element"));
+          .then(response => window.location.href = "/login");
     }
   
 
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
               Sign Up
             </Typography>
             <Formik 
-            initialValues={{user:"", email: "", password: "" }}
+            initialValues={{user:"pedrito",  email: "", password: "" }}
          
          onSubmit={async values => {
            await new Promise(resolve => setTimeout(resolve, 500));
@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
            submitform({values})
          }}>
             <Form className={classes.form} noValidate>
-              <TextField
+              <FormikTextField
                 variant="outlined"
                 margin="normal"
                 required
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
                 autoComplete="email"
                 autoFocus
               />
-              <TextField
+              <FormikTextField
                 color="secondary"
                 variant="outlined"
                 margin="normal"

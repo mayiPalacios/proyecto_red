@@ -15,6 +15,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Logoshin from '../../../IMG/logoShingeki.png'
 import { fontFamily } from '@material-ui/system';
 import { blueGrey, grey } from '@material-ui/core/colors';
+import {Form, Formik} from "formik";
+import {FormikTextField} from "formik-material-fields";
+import axios from "axios";
+const API = 'http://localhost:3000'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,9 +61,20 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3, 0, 2),
     },
   }));
+    const submitform = (frm) => {
+        axios.post(`${API}/SIGNIN`, frm.values)
+            .then(response => {
+                if (response.data.done){
+                    window.location.href = "/blog";
+                }
+                else{
+                    alert("Something went wrong")
+                }
+            });
+    }
   export default function MainL() {
     const classes = useStyles();
-  
+
     return (
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
@@ -70,50 +85,58 @@ const useStyles = makeStyles((theme) => ({
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                color="secondary"
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                color="secondary"
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color = "secondary"
-                className={classes.submit}
-                href="http://localhost:3001/Blog"
-              >
-                Sign In
-              </Button>
-              <Grid container>
-              <Grid item>
-                <Link href="http://localhost:3001/Registro" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-            </form>
+            <Formik initialValues={{user:"pedrito",  email: "", password: "" }}
+
+                    onSubmit={async values => {
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                        alert(JSON.stringify(values, null, 2));
+                        console.log(JSON.stringify(values, null, 2))
+                        submitform({values})
+                    }}>
+                <Form className={classes.form} noValidate>
+                    <FormikTextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        color="secondary"
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <FormikTextField
+                        color="secondary"
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color = "secondary"
+                        className={classes.submit}
+                    >
+                        Sign In
+                    </Button>
+                    <Grid container>
+                        <Grid item>
+                            <Link href="http://localhost:3001/Registro" variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </Form>
+            </Formik>
           </div>
         </Grid>
       </Grid>
